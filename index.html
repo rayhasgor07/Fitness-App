@@ -1,57 +1,210 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>FITNESS APP</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body style="background-color: cadetblue">
-    <!-- Header -->
-    <header
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fitness App</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body style="
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+">
+
+  <header style="
+    position: absolute;
+    top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  ">
+    <h1>Fitness App</h1>
+  </header>
+
+  <div id="container" style="text-align:center; width: 90%; max-width: 400px;">
+
+    <h3 style="margin-bottom: 25px; font-weight: 600; color: #00ffff; letter-spacing: 1px;">
+      WELCOME BACK
+    </h3>
+
+    <!-- Google Sign-In -->
+    <a id="googleBtn"
       style="
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.25s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        background-color: #4285F4;
+      ">
+      <i class="fab fa-google"></i> Sign in with Google
+    </a>
+
+    <!-- Sign Out -->
+    <a id="signOutBtn"
+      style="
+        display:none;
+        background-color:#092f36;
+        color:white;
+        padding:12px;
+        border:none;
+        border-radius:5px;
+        font-size:16px;
+        margin-top:10px;
         text-align: center;
-        background-color: cadetblue;
-        height: 50px;
-      "
-    >
-      <text style="font-size: larger; color: white">FITNESS APP</text>
-    </header>
+      ">
+      Sign Out
+    </a>
 
-    <!-- Navigation Bar -->
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        flex: 1;
-        background-color: skyblue;
-      "
-    >
-      <a id="buttons" href="./Home.html" onclick="gender('M')">
-        <text style="margin-top: 10px">MAN</text>
-        <img style="width:100px; height:100px; margin:20px; align-self: center;" src="./Images/Man.png"/>
-      </a>
+    <!-- GENDER SELECTION -->
+    <div id="genderSection" style="display:none; margin-top: 25px;">
+      <h3 style="color:#00ffff; margin-bottom: 15px;">Select Your Gender</h3>
 
-      <a id="buttons" href="./Home.html" onclick="gender('W')">
-        <text style="margin-top: 10px">WOMAN</text>
-        <img style="width:100px; height:100px; margin:20px; align-self: center;" src="./Images/Woman.png"/>
-      </a>
+      <div style="display:flex; justify-content:center; gap:20px;">
+
+        <div class="genderCard" onclick="selectGender('M')"
+          style="background:#1e293b; padding:15px; border-radius:15px; cursor:pointer; width:45%;">
+          <img src="./Images/Man.png" style="width:100px; height:100px;">
+          <p>MAN</p>
+        </div>
+
+        <div class="genderCard" onclick="selectGender('W')"
+          style="background:#1e293b; padding:15px; border-radius:15px; cursor:pointer; width:45%;">
+          <img src="./Images/Woman.png" style="width:100px; height:100px;">
+          <p>WOMAN</p>
+        </div>
+
+      </div>
     </div>
 
-    <script>
-      function gender(selected) {
-        localStorage.setItem("gender", selected); // Store gender for other pages
+    <!-- Enter App -->
+    <a id="start" href="./Home.html"
+      style="
+        text-decoration: none;
+        display:none;
+        background-color:cadetblue;
+        color:white;
+        padding:12px;
+        border:none;
+        border-radius:5px;
+        font-size:16px;
+        margin-top:20px;
+        text-align: center;
+      ">
+      🏋️ ENTER FITNESS APP
+    </a>
+
+    <p id="status" style="text-align:center; margin-top:20px; color:#00ffff;"></p>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDYk7TWe0fSg9116LKZN-3g8KthK8WVZlY",
+      authDomain: "fitness-app-3a698.firebaseapp.com",
+      projectId: "fitness-app-3a698",
+      storageBucket: "fitness-app-3a698.firebasestorage.app",
+      messagingSenderId: "367615850090",
+      appId: "1:367615850090:web:8d55dc659bb32e11c1bc13",
+      measurementId: "G-BDYRBQBVTB"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    const googleBtn = document.getElementById("googleBtn");
+    const signOutBtn = document.getElementById("signOutBtn");
+    const startBtn = document.getElementById("start");
+    const genderSection = document.getElementById("genderSection");
+    const statusText = document.getElementById("status");
+
+    let selectedGender = null;
+
+    function selectGender(g) {
+      selectedGender = g;
+      localStorage.setItem("gender", g);
+
+      document.querySelectorAll(".genderCard").forEach(c => c.style.border = "none");
+      event.currentTarget.style.border = "3px solid #00ffff";
+
+      checkReady();
+    }
+
+    function checkReady() {
+      if (auth.currentUser && selectedGender) {
+        startBtn.style.display = "block";
       }
-    </script>
-  </body>
+    }
+
+    // Google Sign-In
+    googleBtn.addEventListener("click", () => {
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          statusText.textContent = "🔥 Welcome, " + user.displayName + "!";
+
+          googleBtn.style.display = "none";
+          signOutBtn.style.display = "block";
+          genderSection.style.display = "block";
+
+          checkReady();
+        })
+        .catch((error) => {
+          statusText.textContent = "⚠️ " + error.message;
+        });
+    });
+
+    // Sign Out
+    signOutBtn.addEventListener("click", () => {
+      auth.signOut().then(() => {
+        statusText.textContent = "👋 Signed out successfully!";
+        googleBtn.style.display = "block";
+        signOutBtn.style.display = "none";
+        genderSection.style.display = "none";
+        startBtn.style.display = "none";
+      });
+    });
+
+    // Persist login
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        statusText.textContent = "✅ Signed in as " + user.displayName;
+        googleBtn.style.display = "none";
+        signOutBtn.style.display = "block";
+        genderSection.style.display = "block";
+
+        checkReady();
+      } else {
+        statusText.textContent = "";
+        googleBtn.style.display = "block";
+        signOutBtn.style.display = "none";
+        genderSection.style.display = "none";
+        startBtn.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
 </html>

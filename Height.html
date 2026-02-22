@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Fitness App</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body class="app-body">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <h1>FITNESS APP</h1>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="nav-bar">
+      <a class="nav-btn" href="./Home.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+    </nav>
+
+    <!-- HEIGHT CONTENT -->
+    <section class="info-list">
+
+      <div class="info-card">
+        <h2>GENETICS & GROWTH</h2>
+        <p>
+          Height is mostly genetics (around 80%), but the remaining 20% is influenced by your lifestyle, habits, and environment.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2>SLEEP</h2>
+        <img id="Sleep" class="info-img" src="" />
+        <p>
+          Sleep is the most important factor for growth. Aim for 9–10 hours every night. Deep sleep (10 PM–2 AM) is when your body releases the most growth hormone. Avoid screens 1 hour before bed and keep your room dark and cool.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2>STAY ACTIVE</h2>
+        <img id="Active" class="info-img" src="" />
+        <p>
+          Sprinting, swimming, basketball, and explosive exercises boost HGH and strengthen bones. Many athletes grow taller because of their training intensity and posture improvements.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2>STRETCHING</h2>
+        <img id="Stretch" class="info-img" src="" />
+        <p>
+          Stretching improves posture and decompresses the spine. Bar hangs, cobra stretch, yoga, and gravity-based stretches can help you stand taller and support growth during puberty.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h2>DIET</h2>
+        <img id="Diet" class="info-img" src="" />
+        <p>
+          A proper diet fuels growth. Prioritize protein, calcium, vitamin D, magnesium, zinc, and potassium. Foods like bananas, milk, eggs, chicken, fish, nuts, leafy greens, and whole grains support bone strength and HGH production.
+          Avoid caffeine and processed sugar as they interfere with growth and recovery.
+        </p>
+      </div>
+
+    </section>
+
+    <script>
+      function loadWorkoutImages() {
+        let gender = localStorage.getItem("gender");
+
+        document.getElementById("Sleep").src = `./Images/${gender}Sleep.png`;
+        document.getElementById("Active").src = `./Images/${gender}Active.png`;
+        document.getElementById("Stretch").src = `./Images/${gender}Cobra.png`;
+        document.getElementById("Diet").src = `./Images/Diet.png`;
+      }
+
+      window.onload = loadWorkoutImages;
+    </script>
+
+  </body>
+</html>

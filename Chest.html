@@ -1,139 +1,97 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>FITNESS APP</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body style="background-color: cadetblue">
-    <!--Header-->
-    <header
-      style="
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        background-color: cadetblue;
-        height: 50px;
-      "
-    >
-      <text style="font-size: larger; color: white">FITNESS APP</text>
-    </header>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Chest Workout</title>
 
-    <!-- Navigation Bar -->
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Stretch.html">
-        <text style="margin-top: 10px">STRETCH</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" style="background-color:darkcyan;" href="./Chest.html">
-        <text style="margin-top: 10px">CHEST</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Shoulders.html">
-        <text style="margin-top: 10px">SHOULDERS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Back.html">
-        <text style="margin-top: 10px">BACK</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Arms.html">
-        <text style="margin-top: 10px">ARMS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Core.html">
-        <text style="margin-top: 10px">CORE</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Glutes.html">
-        <text style="margin-top: 10px">GLUTES</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Hamstrings.html">
-        <text style="margin-top: 10px">HAMSTRINGS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Quadriceps.html">
-        <text style="margin-top: 10px">QUADRICEPS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Calves.html">
-        <text style="margin-top: 10px">CALVES</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body class="app-body">
+
+  <!-- HEADER -->
+  <header class="app-header" style="display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
+    <a href="./Home.html" class="nav-btn" style="width:auto; padding:8px 14px;">⬅ Home</a>
+    <h1 style="margin:auto;">CHEST</h1>
+    <div style="width:60px;"></div>
+  </header>
+
+  <!-- MUSCLE NAV GRID -->
+  <section class="muscle-grid">
+    <a class="muscle-btn active" href="./Chest.html">Chest</a>
+    <a class="muscle-btn" href="./Shoulders.html">Shoulders</a>
+    <a class="muscle-btn" href="./Back.html">Back</a>
+    <a class="muscle-btn" href="./Arms.html">Arms</a>
+    <a class="muscle-btn" href="./Core.html">Core</a>
+    <a class="muscle-btn" href="./Glutes.html">Glutes</a>
+    <a class="muscle-btn" href="./Hamstrings.html">Hamstrings</a>
+    <a class="muscle-btn" href="./Quadriceps.html">Quads</a>
+    <a class="muscle-btn" href="./Calves.html">Calves</a>
+  </section>
+
+  <!-- WORKOUT CARDS -->
+  <section class="workout-list">
+
+    <div class="workout-card">
+      <h2>Push-Ups</h2>
+      <img id="Pushup" class="workout-img" src=""/>
+      <p>Keep your body straight, lower until your chest nearly touches the floor, then push back up.</p>
     </div>
 
-
-
-    <div id="results">
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>PUSH UPS</u></b>
-        <img style="width:220px; height:120px; margin:20px" id="Pushup" src=""/>
-        <text>Keep your body in a straight line, lower yourself until your chest almost touches the floor, then push back up.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>INCLINE PUSH UPS</u></b>
-        <img style="width:200px; height:130px; margin:20px" id="Incline" src=""/>
-        <text>Place your hands on an elevated surface (like a table) and perform push-ups to target the lower chest.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>DECLINE PUSH UPS</u></b>
-        <img style="width:220px; height:120px; margin:20px" id="Decline" src=""/>
-        <text>Elevate your feet on a surface and do push-ups to emphasize the upper chest.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>WIDE PUSH UPS</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="Wide" src=""/>
-        <text>Place your hands wider than shoulder-width to engage the outer chest more.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>DIAMOND PUSH UPS</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="Diamond" src=""/>
-        <text>Place your hands close together forming a diamond shape to target the inner chest and triceps.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>ARCHER PUSH UPS</u></b>
-        <img style="width:200px; height:130px; margin:20px" id="Archer" src=""/>
-        <text>Extend one arm out while lowering your chest toward the other arm to increase chest activation.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>CLAPPING PUSH UPS</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="Clap" src=""/>
-        <text>Start in a standard push-up position, lower your chest to the ground, then explosively push up so your hands leave the floor and clap before landing back in the starting position.</text>
-      </a>
+    <div class="workout-card">
+      <h2>Incline Push-Ups</h2>
+      <img id="Incline" class="workout-img" src=""/>
+      <p>Place your hands on an elevated surface to target the lower chest.</p>
     </div>
 
-    <script>
-      // Function to set images based on gender
-      function loadWorkoutImages() {
-        let gender = localStorage.getItem("gender"); // Retrieve gender selection
+    <div class="workout-card">
+      <h2>Decline Push-Ups</h2>
+      <img id="Decline" class="workout-img" src=""/>
+      <p>Elevate your feet to emphasize the upper chest.</p>
+    </div>
 
-        // Update image sources dynamically
-        document.getElementById("Pushup").src = `./Images/${gender}Pushup.png`;
-        document.getElementById("Incline").src = `./Images/${gender}Incline.png`;
-        document.getElementById("Decline").src = `./Images/${gender}Decline.png`;
-        document.getElementById("Wide").src = `./Images/${gender}Wide.png`;
-        document.getElementById("Diamond").src = `./Images/${gender}Diamond.png`;
-        document.getElementById("Archer").src = `./Images/${gender}Archer.png`;
-        document.getElementById("Clap").src = `./Images/${gender}Clap.png`;
-      }
+    <div class="workout-card">
+      <h2>Wide Push-Ups</h2>
+      <img id="Wide" class="workout-img" src=""/>
+      <p>Place your hands wider than shoulder-width to engage the outer chest.</p>
+    </div>
 
-      // Run the function when the page loads
-      window.onload = loadWorkoutImages;
-    </script>
-  </body>
+    <div class="workout-card">
+      <h2>Diamond Push-Ups</h2>
+      <img id="Diamond" class="workout-img" src=""/>
+      <p>Bring your hands together in a diamond shape to target the inner chest and triceps.</p>
+    </div>
+
+    <div class="workout-card">
+      <h2>Archer Push-Ups</h2>
+      <img id="Archer" class="workout-img" src=""/>
+      <p>Extend one arm out while lowering toward the other arm for increased chest activation.</p>
+    </div>
+
+    <div class="workout-card">
+      <h2>Clapping Push-Ups</h2>
+      <img id="Clap" class="workout-img" src=""/>
+      <p>Explosively push off the ground and clap before landing back in push-up position.</p>
+    </div>
+
+  </section>
+
+  <script>
+    function loadWorkoutImages() {
+      let gender = localStorage.getItem("gender");
+
+      document.getElementById("Pushup").src = `./Images/${gender}Pushup.png`;
+      document.getElementById("Incline").src = `./Images/${gender}Incline.png`;
+      document.getElementById("Decline").src = `./Images/${gender}Decline.png`;
+      document.getElementById("Wide").src = `./Images/${gender}Wide.png`;
+      document.getElementById("Diamond").src = `./Images/${gender}Diamond.png`;
+      document.getElementById("Archer").src = `./Images/${gender}Archer.png`;
+      document.getElementById("Clap").src = `./Images/${gender}Clap.png`;
+    }
+
+    window.onload = loadWorkoutImages;
+  </script>
+
+</body>
 </html>

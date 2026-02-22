@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Fitness App</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body class="app-body">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <h1>FITNESS APP</h1>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="nav-bar">
+      <a class="nav-btn" href="./Home.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+    </nav>
+
+    <!-- WORKOUT LIST -->
+    <section class="workout-list">
+
+      <div class="workout-card">
+        <h2>COBRA STRETCH</h2>
+        <img id="Cobra" class="workout-img" src="" />
+        <p>
+          Lie on your stomach and slowly press your palms into the ground and lift your head and chest off the ground, keeping your elbows bent and your abdominal muscles contracted.
+        </p>
+      </div>
+
+      <div class="workout-card">
+        <h2>GLUTE BRIDGE</h2>
+        <img id="Bridge" class="workout-img" src="" />
+        <p>
+          Lie on your back, knees bent, feet flat on the floor, lift your hips to form a straight line from shoulders to knees, then lower.
+        </p>
+      </div>
+
+    </section>
+
+    <script>
+      function loadWorkoutImages() {
+        let gender = localStorage.getItem("gender");
+        document.getElementById("Cobra").src = `./Images/${gender}Cobra.png`;
+        document.getElementById("Bridge").src = `./Images/${gender}Bridge.png`;
+      }
+
+      window.onload = loadWorkoutImages;
+    </script>
+
+  </body>
+</html>

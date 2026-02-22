@@ -1,118 +1,76 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>FITNESS APP</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body style="background-color: cadetblue">
-    <!--Header-->
-    <header
-      style="
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        background-color: cadetblue;
-        height: 50px;
-      "
-    >
-      <text style="font-size: larger; color: white">FITNESS APP</text>
-    </header>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Hamstrings Workout</title>
 
-    <!-- Navigation Bar -->
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Stretch.html">
-        <text style="margin-top: 10px">STRETCH</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Chest.html">
-        <text style="margin-top: 10px">CHEST</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Shoulders.html">
-        <text style="margin-top: 10px">SHOULDERS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Back.html">
-        <text style="margin-top: 10px">BACK</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Arms.html">
-        <text style="margin-top: 10px">ARMS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Core.html">
-        <text style="margin-top: 10px">CORE</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Glutes.html">
-        <text style="margin-top: 10px">GLUTES</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" style="background-color:darkcyan;" href="./Hamstrings.html">
-        <text style="margin-top: 10px">HAMSTRINGS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Quadriceps.html">
-        <text style="margin-top: 10px">QUADRICEPS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Calves.html">
-        <text style="margin-top: 10px">CALVES</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body class="app-body">
+
+  <!-- HEADER -->
+  <header class="app-header" style="display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
+    <a href="./Home.html" class="nav-btn" style="width:auto; padding:8px 14px;">⬅ Home</a>
+    <h1 style="margin:auto;">HAMSTRINGS</h1>
+    <div style="width:60px;"></div>
+  </header>
+
+  <!-- MUSCLE NAV GRID -->
+  <section class="muscle-grid">
+    <a class="muscle-btn" href="./Chest.html">Chest</a>
+    <a class="muscle-btn" href="./Shoulders.html">Shoulders</a>
+    <a class="muscle-btn" href="./Back.html">Back</a>
+    <a class="muscle-btn" href="./Arms.html">Arms</a>
+    <a class="muscle-btn" href="./Core.html">Core</a>
+    <a class="muscle-btn" href="./Glutes.html">Glutes</a>
+    <a class="muscle-btn active" href="./Hamstrings.html">Hamstrings</a>
+    <a class="muscle-btn" href="./Quadriceps.html">Quads</a>
+    <a class="muscle-btn" href="./Calves.html">Calves</a>
+  </section>
+
+  <!-- WORKOUT CARDS -->
+  <section class="workout-list">
+
+    <div class="workout-card">
+      <h2>Glute Bridge</h2>
+      <img id="Bridge" class="workout-img" src=""/>
+      <p>Lie on your back, knees bent, feet flat on the floor. Lift your hips to form a straight line from shoulders to knees, then lower.</p>
     </div>
 
-    <div id="results">
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>GLUTE BRIDGE</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="Bridge" src=""/>
-        <text>Lie on your back, knees bent, feet flat on the floor, lift your hips to form a straight line from shoulders to knees, then lower.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>MOUNTAIN CLIMBERS</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="Mountain" src=""/>
-        <text>In a plank position, drive one knee toward your chest, alternating legs quickly to engage the hamstrings.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>LATERAL LEG SWINGS</u></b>
-        <img style="width:200px; height:190px; margin:20px" id="LegSwings" src=""/>
-        <text>Stand on one leg, swing the other leg back and forth to engage the hamstrings and hip flexors.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>STANDING LEG CURLS</u></b>
-        <img style="width:150px; height:220px; margin:20px" id="LegCurls" src=""/>
-        <text>Stand and bend one knee to bring your heel toward your glutes, then lower and repeat with the other leg.</text>
-      </a>
-      </div>
-    <script>
-      // Function to set images based on gender
-      function loadWorkoutImages() {
-        let gender = localStorage.getItem("gender"); // Retrieve gender selection
+    <div class="workout-card">
+      <h2>Mountain Climbers</h2>
+      <img id="Mountain" class="workout-img" src=""/>
+      <p>In a plank position, drive one knee toward your chest, alternating legs quickly to activate the hamstrings.</p>
+    </div>
 
-        // Update image sources dynamically
-        document.getElementById("Bridge").src = `./Images/${gender}Bridge.png`;
-        document.getElementById("Mountain").src = `./Images/${gender}Mountain.png`;
-        document.getElementById("LegSwings").src = `./Images/${gender}LegSwings.png`;
-        document.getElementById("LegCurls").src = `./Images/${gender}LegCurls.png`;
-      }
+    <div class="workout-card">
+      <h2>Lateral Leg Swings</h2>
+      <img id="LegSwings" class="workout-img" src=""/>
+      <p>Stand on one leg and swing the other back and forth to engage the hamstrings and hip flexors.</p>
+    </div>
 
-      // Run the function when the page loads
-      window.onload = loadWorkoutImages;
-    </script>
-  </body>
+    <div class="workout-card">
+      <h2>Standing Leg Curls</h2>
+      <img id="LegCurls" class="workout-img" src=""/>
+      <p>Stand and bend one knee to bring your heel toward your glutes, then lower and repeat with the other leg.</p>
+    </div>
+
+  </section>
+
+  <script>
+    function loadWorkoutImages() {
+      let gender = localStorage.getItem("gender");
+
+      document.getElementById("Bridge").src = `./Images/${gender}Bridge.png`;
+      document.getElementById("Mountain").src = `./Images/${gender}Mountain.png`;
+      document.getElementById("LegSwings").src = `./Images/${gender}LegSwings.png`;
+      document.getElementById("LegCurls").src = `./Images/${gender}LegCurls.png`;
+    }
+
+    window.onload = loadWorkoutImages;
+  </script>
+
+</body>
 </html>

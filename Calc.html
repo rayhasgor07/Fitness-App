@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Fitness Calculators</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="app-body">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <h1>FITNESS CALCULATORS</h1>
+    </header>
+
+    <!-- NAV -->
+    <nav class="nav-bar">
+      <a class="nav-btn" href="./Home.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+    </nav>
+
+    <!-- TAB BUTTONS -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="openTab('bmiTab')">BMI</button>
+      <button class="tab-btn" onclick="openTab('calTab')">Calories</button>
+      <button class="tab-btn" onclick="openTab('waterTab')">Water</button>
+    </div>
+
+    <!-- BMI TAB -->
+    <section id="bmiTab" class="tab-content active-tab">
+      <div class="calc-card">
+        <h2>BMI Calculator</h2>
+
+        <input id="bmiHeight" class="calc-input" type="number" placeholder="Height (cm)">
+        <input id="bmiWeight" class="calc-input" type="number" placeholder="Weight (kg)">
+
+        <button class="calc-btn" onclick="calculateBMI()">Calculate</button>
+
+        <div id="bmiResult" class="calc-result"></div>
+      </div>
+    </section>
+
+    <!-- CALORIE TAB -->
+    <section id="calTab" class="tab-content">
+      <div class="calc-card">
+        <h2>Calorie Calculator</h2>
+
+        <input id="age" class="calc-input" type="number" placeholder="Age">
+        <input id="calHeight" class="calc-input" type="number" placeholder="Height (cm)">
+        <input id="calWeight" class="calc-input" type="number" placeholder="Weight (kg)">
+
+        <select id="activity" class="calc-input">
+          <option value="1.2">Sedentary</option>
+          <option value="1.375">Light Exercise</option>
+          <option value="1.55">Moderate Exercise</option>
+          <option value="1.725">Heavy Exercise</option>
+          <option value="1.9">Athlete</option>
+        </select>
+
+        <button class="calc-btn" onclick="calculateCalories()">Calculate</button>
+
+        <div id="calResult" class="calc-result"></div>
+      </div>
+    </section>
+
+    <!-- WATER TAB -->
+    <section id="waterTab" class="tab-content">
+      <div class="calc-card">
+        <h2>Water Intake</h2>
+
+        <input id="waterWeight" class="calc-input" type="number" placeholder="Weight (kg)">
+
+        <button class="calc-btn" onclick="calcWater()">Calculate</button>
+
+        <div id="waterResult" class="calc-result"></div>
+      </div>
+    </section>
+
+    <script>
+      // TAB SWITCHING
+      function openTab(tabName) {
+        document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active-tab"));
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.getElementById(tabName).classList.add("active-tab");
+        event.target.classList.add("active");
+      }
+
+      // BMI
+      function calculateBMI() {
+        let h = document.getElementById("bmiHeight").value;
+        let w = document.getElementById("bmiWeight").value;
+
+        if (!h || !w) {
+          document.getElementById("bmiResult").innerHTML = "Enter height & weight";
+          return;
+        }
+
+        let bmi = w / ((h / 100) ** 2);
+        bmi = bmi.toFixed(1);
+
+        let status = "";
+        if (bmi < 18.5) status = "Underweight";
+        else if (bmi < 25) status = "Normal";
+        else if (bmi < 30) status = "Overweight";
+        else status = "Obese";
+
+        document.getElementById("bmiResult").innerHTML =
+          `BMI: <b>${bmi}</b><br>Status: <b>${status}</b>`;
+      }
+
+      // CALORIES
+      function calculateCalories() {
+        let age = document.getElementById("age").value;
+        let h = document.getElementById("calHeight").value;
+        let w = document.getElementById("calWeight").value;
+        let act = document.getElementById("activity").value;
+
+        if (!age || !h || !w) {
+          document.getElementById("calResult").innerHTML = "Fill all fields";
+          return;
+        }
+
+        let gender = localStorage.getItem("gender");
+        let BMR = 0;
+
+        if (gender === "M") {
+          BMR = 88.36 + (13.4 * w) + (4.8 * h) - (5.7 * age);
+        } else {
+          BMR = 447.6 + (9.2 * w) + (3.1 * h) - (4.3 * age);
+        }
+
+        let TDEE = BMR * act;
+
+        document.getElementById("calResult").innerHTML =
+          `Maintenance Calories: <b>${Math.round(TDEE)}</b>`;
+      }
+
+      // WATER
+      function calcWater() {
+        let w = document.getElementById("waterWeight").value;
+
+        if (!w) {
+          document.getElementById("waterResult").innerHTML = "Enter weight";
+          return;
+        }
+
+        let liters = w * 0.033;
+
+        document.getElementById("waterResult").innerHTML =
+          `Daily Water Intake: <b>${liters.toFixed(2)} L</b>`;
+      }
+    </script>
+
+  </body>
+</html>

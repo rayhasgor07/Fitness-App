@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weight Tracker</title>
+
+  <link rel="stylesheet" href="./style.css"/>
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+</head>
+
+<body class="app-body">
+
+  <header class="app-header">
+    <h1>WEIGHT TRACKER</h1>
+  </header>
+
+    <nav class="nav-bar">
+      <a class="nav-btn" href="./Home.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+    </nav>
+
+  <section class="calc-container">
+
+    <div class="calc-card">
+      <h2>Enter Today’s Weight</h2>
+
+      <input id="weightInput" class="calc-input" type="number" placeholder="Weight (kg)">
+      <button class="calc-btn" onclick="saveWeight()">Save Weight</button>
+
+      <h3 style="margin-top:20px;">History</h3>
+      <div id="history" style="margin-top:10px; text-align:left;"></div>
+    </div>
+
+  </section>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDYk7TWe0fSg9116LKZN-3g8KthK8WVZlY",
+      authDomain: "fitness-app-3a698.firebaseapp.com",
+      projectId: "fitness-app-3a698",
+      storageBucket: "fitness-app-3a698.firebasestorage.app",
+      messagingSenderId: "367615850090",
+      appId: "1:367615850090:web:8d55dc659bb32e11c1bc13",
+      measurementId: "G-BDYRBQBVTB",
+      databaseURL: "https://fitness-app-3a698-default-rtdb.firebaseio.com/"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    let currentUser = null;
+
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        window.location.href = "./index.html";
+      } else {
+        currentUser = user;
+        loadHistory();
+      }
+    });
+
+    function saveWeight() {
+      const weight = document.getElementById("weightInput").value;
+      if (!weight) return alert("Enter a weight");
+
+      const date = new Date().toLocaleDateString();
+
+      db.ref("weights/" + currentUser.uid).push({
+        weight: weight,
+        date: date
+      });
+
+      document.getElementById("weightInput").value = "";
+      loadHistory();
+    }
+
+    function loadHistory() {
+  const historyDiv = document.getElementById("history");
+  historyDiv.innerHTML = "Loading...";
+
+  db.ref("weights/" + currentUser.uid).once("value", (snapshot) => {
+    historyDiv.innerHTML = "";
+
+    snapshot.forEach((child) => {
+      const entry = child.val();
+      const id = child.key;
+
+      const line = document.createElement("div");
+      line.style.display = "flex";
+      line.style.justifyContent = "space-between";
+      line.style.alignItems = "center";
+      line.style.marginBottom = "10px";
+
+      line.innerHTML = `
+        <span>${entry.date}: ${entry.weight} kg</span>
+        <button style="
+          background:red;
+          color:white;
+          border:none;
+          padding:5px 10px;
+          border-radius:5px;
+          cursor:pointer;
+        " onclick="deleteWeight('${id}')">Delete</button>
+      `;
+
+      historyDiv.appendChild(line);
+    });
+  });
+}
+function deleteWeight(id) {
+  db.ref("weights/" + currentUser.uid + "/" + id).remove()
+    .then(() => {
+      loadHistory();
+    })
+    .catch((err) => {
+      alert("Error deleting entry: " + err.message);
+    });
+}
+  </script>
+
+</body>
+</html>

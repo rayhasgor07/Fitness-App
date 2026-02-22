@@ -2,64 +2,61 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>FITNESS APP</title>
+    <title>Fitness App</title>
+    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body style="background-color: cadetblue">
-    <!--Header-->
-    <header
-      style="
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        background-color: cadetblue;
-        height: 50px;
-      "
-    >
-      <text style="font-size: larger; color: white">FITNESS APP</text>
+
+  <body class="app-body">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <h1>FITNESS APP</h1>
     </header>
 
-    <!-- Navigation Bar -->
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./index.html">
-        <text style="margin-top: 10px">GENDER</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
+    <!-- NAVIGATION -->
+    <nav class="nav-bar">
+      <a class="nav-btn" href="./index.html">
+        <i class="fa-solid fa-venus-mars"></i>
+        <span>Gender</span>
       </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Stretch.html">
-        <text style="margin-top: 10px">WORKOUT</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Food.html">
-        <text style="margin-top: 10px">FOOD</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-burger"></i>
-      </a>
-      <a id="buttons" href="./Body.html">
-        <text style="margin-top: 10px">BODY FAT</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-calculator"></i>
-      </a>
-    </div>
 
-    <div id="results">
+      <a class="nav-btn" href="./Core.html">
+        <i class="fa-solid fa-dumbbell"></i>
+        <span>Workout</span>
+      </a>
 
+      <a class="nav-btn" href="./Height.html">
+        <i class="fa-solid fa-text-height"></i>
+        <span>Height</span>
+      </a>
 
-    </div>
-  
+      <a class="nav-btn" href="./Yoga.html">
+        <i class="fa-solid fa-person-walking"></i>
+        <span>Yoga</span>
+      </a>
+
+       <a class="nav-btn" href="./Calc.html">
+        <i class="fa-solid fa-calculator"></i>
+        <span>Calculator</span>
+      </a>
+
+      <a class="nav-btn" href="./Weight.html">
+        <i class="fa-solid fa-weight-scale"></i>
+        <span>Weight</span>
+      </a>
+       <a class="nav-btn" href="./WorkGen.html">
+        <i class="fa-solid fa-dumbbell"></i>
+        <span>WorkoutGenerator</span>
+      </a>
+    </nav>
 
     <script>
-      // Function to set images based on gender
       function loadWorkoutImages() {
-        let gender = localStorage.getItem("gender"); // Retrieve gender selection
-        // Update image sources dynamically
+        let gender = localStorage.getItem("gender");
         document.getElementById("Cobra").src = `./Images/${gender}Cobra.png`;
         document.getElementById("Child").src = `./Images/${gender}Child.png`;
         document.getElementById("Crescent").src = `./Images/${gender}Crescent.png`;
@@ -68,8 +65,8 @@
         document.getElementById("SpinalTwist").src = `./Images/${gender}SpinalTwist.png`;
       }
 
-      // Run the function when the page loads
       window.onload = loadWorkoutImages;
     </script>
+
   </body>
 </html>

@@ -1,131 +1,90 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>FITNESS APP</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body style="background-color: cadetblue">
-    <!--Header-->
-    <header
-      style="
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        background-color: cadetblue;
-        height: 50px;
-      "
-    >
-      <text style="font-size: larger; color: white">FITNESS APP</text>
-    </header>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Shoulders Workout</title>
 
-    <!-- Navigation Bar -->
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Stretch.html">
-        <text style="margin-top: 10px">STRETCH</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Chest.html">
-        <text style="margin-top: 10px">CHEST</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" style="background-color:darkcyan;" href="./Shoulders.html">
-        <text style="margin-top: 10px">SHOULDERS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Back.html">
-        <text style="margin-top: 10px">BACK</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Arms.html">
-        <text style="margin-top: 10px">ARMS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Core.html">
-        <text style="margin-top: 10px">CORE</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Glutes.html">
-        <text style="margin-top: 10px">GLUTES</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-    </div>
-    <div style="display: flex;flex-direction: row;justify-content: center;flex: 1; background-color: skyblue;">
-      <a id="buttons" href="./Hamstrings.html">
-        <text style="margin-top: 10px">HAMSTRINGS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Quadriceps.html">
-        <text style="margin-top: 10px">QUADRICEPS</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
-      <a id="buttons" href="./Calves.html">
-        <text style="margin-top: 10px">CALVES</text>
-        <i style="margin-bottom: 10px" class="fa-solid fa-dumbbell"></i>
-      </a>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body class="app-body">
+
+  <!-- HEADER -->
+  <header class="app-header" style="display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
+    <a href="./Home.html" class="nav-btn" style="width:auto; padding:8px 14px;">⬅ Home</a>
+    <h1 style="margin:auto;">SHOULDERS</h1>
+    <div style="width:60px;"></div>
+  </header>
+
+  <!-- MUSCLE NAV GRID -->
+  <section class="muscle-grid">
+    <a class="muscle-btn" href="./Chest.html">Chest</a>
+    <a class="muscle-btn active" href="./Shoulders.html">Shoulders</a>
+    <a class="muscle-btn" href="./Back.html">Back</a>
+    <a class="muscle-btn" href="./Arms.html">Arms</a>
+    <a class="muscle-btn" href="./Core.html">Core</a>
+    <a class="muscle-btn" href="./Glutes.html">Glutes</a>
+    <a class="muscle-btn" href="./Hamstrings.html">Hamstrings</a>
+    <a class="muscle-btn" href="./Quadriceps.html">Quads</a>
+    <a class="muscle-btn" href="./Calves.html">Calves</a>
+  </section>
+
+  <!-- WORKOUT CARDS -->
+  <section class="workout-list">
+
+    <div class="workout-card">
+      <h2>Pike Push-Ups</h2>
+      <img id="Pike" class="workout-img" src=""/>
+      <p>Start in a downward dog position, lower your head toward the floor, then push back up to target the shoulders.</p>
     </div>
 
-    <div id="results">
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>PIKE PUSH UPS</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="Pike" src=""/>
-        <text>Start in a downward dog position, lower your head toward the floor, then push back up to target the shoulders.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>DECLINE PIKE PUSH UPS</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="DeclinePike" src=""/>
-        <text>Elevate your feet on a surface to increase difficulty and focus more on the shoulders.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>SHOULDER TAPS</u></b>
-        <img style="width:210px; height:160px; margin:20px" id="ShoulderTaps" src=""/>
-        <text>In a push-up position, lift one hand to tap the opposite shoulder, alternating sides to build stability and strength.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>HANDSTAND HOLD</u></b>
-        <img style="width:120px; height:230px; margin:20px" id="Handstand" src=""/>
-        <text>Kick up against a wall and hold for as long as possible to build shoulder endurance and strength.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>ARM CIRCLES</u></b>
-        <img style="width:250px; height:130px; margin:20px" id="ArmCircles" src=""/>
-        <text>Extend your arms and make small and large circles to warm up and strengthen the shoulders.</text>
-      </a>
-      <a style="display: flex; flex-direction: column; width:80%; align-items: center;justify-content: center; align-self: center; background-color: cadetblue; padding:20px; text-align: center; text-decoration: none; color:white; border-radius: 50px; margin:20px">
-        <b><u>PULL UPS</u></b>
-        <img style="width:200px; height:150px; margin:20px" id="PullUps" src=""/>
-        <text>Grip a pull-up bar slightly wider than shoulder-width, pull yourself up until your chin clears the bar, then lower slowly.</text>
-      </a>
+    <div class="workout-card">
+      <h2>Decline Pike Push-Ups</h2>
+      <img id="DeclinePike" class="workout-img" src=""/>
+      <p>Elevate your feet on a surface to increase difficulty and focus more on the shoulders.</p>
     </div>
 
-    <script>
-      // Function to set images based on gender
-      function loadWorkoutImages() {
-        let gender = localStorage.getItem("gender"); // Retrieve gender selection
+    <div class="workout-card">
+      <h2>Shoulder Taps</h2>
+      <img id="ShoulderTaps" class="workout-img" src=""/>
+      <p>In a push-up position, lift one hand to tap the opposite shoulder, alternating sides to build stability and strength.</p>
+    </div>
 
-        // Update image sources dynamically
-        document.getElementById("Pike").src = `./Images/${gender}Pike.png`;
-        document.getElementById("DeclinePike").src = `./Images/${gender}DeclinePike.png`;
-        document.getElementById("ShoulderTaps").src = `./Images/${gender}ShoulderTaps.png`;
-        document.getElementById("Handstand").src = `./Images/${gender}Handstand.png`;
-        document.getElementById("ArmCircles").src = `./Images/${gender}ArmCircles.png`;
-        document.getElementById("PullUps").src = `./Images/${gender}PullUps.png`;
-      }
+    <div class="workout-card">
+      <h2>Handstand Hold</h2>
+      <img id="Handstand" class="workout-img" src=""/>
+      <p>Kick up against a wall and hold for as long as possible to build shoulder endurance and strength.</p>
+    </div>
 
-      // Run the function when the page loads
-      window.onload = loadWorkoutImages;
-    </script>
-  </body>
+    <div class="workout-card">
+      <h2>Arm Circles</h2>
+      <img id="ArmCircles" class="workout-img" src=""/>
+      <p>Extend your arms and make small and large circles to warm up and strengthen the shoulders.</p>
+    </div>
+
+    <div class="workout-card">
+      <h2>Pull-Ups</h2>
+      <img id="PullUps" class="workout-img" src=""/>
+      <p>Grip a pull-up bar slightly wider than shoulder-width, pull yourself up until your chin clears the bar, then lower slowly.</p>
+    </div>
+
+  </section>
+
+  <script>
+    function loadWorkoutImages() {
+      let gender = localStorage.getItem("gender");
+
+      document.getElementById("Pike").src = `./Images/${gender}Pike.png`;
+      document.getElementById("DeclinePike").src = `./Images/${gender}DeclinePike.png`;
+      document.getElementById("ShoulderTaps").src = `./Images/${gender}ShoulderTaps.png`;
+      document.getElementById("Handstand").src = `./Images/${gender}Handstand.png`;
+      document.getElementById("ArmCircles").src = `./Images/${gender}ArmCircles.png`;
+      document.getElementById("PullUps").src = `./Images/${gender}PullUps.png`;
+    }
+
+    window.onload = loadWorkoutImages;
+  </script>
+
+</body>
 </html>
