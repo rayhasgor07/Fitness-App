@@ -1,61 +1,85 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Fitness App</title>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Stretching & Yoga</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
 
-  <body class="app-body">
+<body class="app-body">
 
-    <!-- HEADER -->
-    <header class="app-header">
-      <h1>FITNESS APP</h1>
-    </header>
+  <!-- HEADER -->
+  <header class="app-header" style="display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
+    <a href="./Home.html" class="nav-btn" style="width:auto; padding:8px 14px;">⬅ Home</a>
+    <h1 style="margin:auto;">STRETCHING</h1>
+    <div style="width:60px;"></div>
+  </header>
 
-    <!-- NAVIGATION -->
-    <nav class="nav-bar">
-      <a class="nav-btn" href="./Home.html">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-      </a>
-    </nav>
+  <!-- INTRO CARD -->
+  <section class="workout-list">
+    <div class="workout-card">
+      <h2>Why Stretching Matters</h2>
+      <p>
+        Stretching increases flexibility, boosts blood flow, reduces injury risk, improves recovery, 
+        decreases soreness, and helps your joints move through a full range of motion. 
+        It also promotes relaxation and reduces muscle tension.
+      </p>
+    </div>
 
-    <!-- WORKOUT LIST -->
-    <section class="workout-list">
+    <!-- POSES -->
+    <div class="workout-card">
+      <h2>Cobra Pose</h2>
+      <img id="Cobra" class="workout-img" src=""/>
+      <p>Lie on your stomach, place hands under shoulders, and lift your chest while keeping elbows slightly bent.</p>
+    </div>
 
-      <div class="workout-card">
-        <h2>COBRA STRETCH</h2>
-        <img id="Cobra" class="workout-img" src="" />
-        <p>
-          Lie on your stomach and slowly press your palms into the ground and lift your head and chest off the ground, keeping your elbows bent and your abdominal muscles contracted.
-        </p>
-      </div>
+    <div class="workout-card">
+      <h2>Child’s Pose</h2>
+      <img id="Child" class="workout-img" src=""/>
+      <p>Sit on your heels, extend arms forward, and lower your chest to the mat with your forehead resting down.</p>
+    </div>
 
-      <div class="workout-card">
-        <h2>GLUTE BRIDGE</h2>
-        <img id="Bridge" class="workout-img" src="" />
-        <p>
-          Lie on your back, knees bent, feet flat on the floor, lift your hips to form a straight line from shoulders to knees, then lower.
-        </p>
-      </div>
+    <div class="workout-card">
+      <h2>Crescent Lunge</h2>
+      <img id="Crescent" class="workout-img" src=""/>
+      <p>Step one foot forward, bend the front knee at 90°, and raise arms overhead while keeping the back leg straight.</p>
+    </div>
 
-    </section>
+    <div class="workout-card">
+      <h2>Pigeon Pose</h2>
+      <img id="Pigeon" class="workout-img" src=""/>
+      <p>Bring one knee forward, extend the other leg back, and lower your torso over the bent leg for a deep hip stretch.</p>
+    </div>
 
-    <script>
-      function loadWorkoutImages() {
-        let gender = localStorage.getItem("gender");
-        document.getElementById("Cobra").src = `./Images/${gender}Cobra.png`;
-        document.getElementById("Bridge").src = `./Images/${gender}Bridge.png`;
-      }
+    <div class="workout-card">
+      <h2>Bridge Pose</h2>
+      <img id="Bridge" class="workout-img" src=""/>
+      <p>Lie on your back, bend knees, place feet hip-width apart, and lift your hips while pressing into your heels.</p>
+    </div>
 
-      window.onload = loadWorkoutImages;
-    </script>
+    <div class="workout-card">
+      <h2>Spinal Twist</h2>
+      <img id="SpinalTwist" class="workout-img" src=""/>
+      <p>Lie on your back, bend one knee across your body, and gently twist while keeping shoulders grounded.</p>
+    </div>
+  </section>
 
-  </body>
+  <script>
+    function loadWorkoutImages() {
+      let gender = localStorage.getItem("gender");
+
+      document.getElementById("Cobra").src = `./Images/${gender}Cobra.png`;
+      document.getElementById("Child").src = `./Images/${gender}Child.png`;
+      document.getElementById("Crescent").src = `./Images/${gender}Crescent.png`;
+      document.getElementById("Pigeon").src = `./Images/${gender}Pigeon.png`;
+      document.getElementById("Bridge").src = `./Images/${gender}Bridge.png`;
+      document.getElementById("SpinalTwist").src = `./Images/${gender}SpinalTwist.png`;
+    }
+
+    window.onload = loadWorkoutImages;
+  </script>
+
+</body>
 </html>
