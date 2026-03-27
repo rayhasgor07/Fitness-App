@@ -3,44 +3,37 @@
 <head>
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Workout Generator</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
   <link rel="stylesheet" href="./style.css"/>
 </head>
-
 <body class="app-body">
 
-  <!-- HEADER -->
-  <header class="app-header" style="display:flex; justify-content:space-between; align-items:center; padding:0 20px;">
-    <a href="./Home.html" class="nav-btn" style="width:auto; padding:8px 14px;">⬅ Home</a>
-    <h1 style="margin:auto;">WORKOUT GENERATOR</h1>
-    <div style="width:60px;"></div>
+  <header class="app-header" style="display:flex;justify-content:space-between;align-items:center;padding:0 20px;">
+    <a href="./Home.html" class="nav-btn" style="width:auto;padding:8px 16px;flex-direction:row;gap:6px;font-size:13px;">⬅ Home</a>
+    <h1>Workout Gen</h1>
+    <div style="width:80px;"></div>
   </header>
 
-  <!-- SELECTION TABS -->
-  <section class="tab-buttons">
-    <button class="tab-btn active" onclick="selectGoal('strength')">Strength</button>
-    <button class="tab-btn" onclick="selectGoal('fatloss')">Fat Loss</button>
-    <button class="tab-btn" onclick="selectGoal('endurance')">Endurance</button>
-    <button class="tab-btn" onclick="selectGoal('mobility')">Mobility</button>
-  </section>
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="selectGoal('strength',this)">Strength</button>
+    <button class="tab-btn" onclick="selectGoal('fatloss',this)">Fat Loss</button>
+    <button class="tab-btn" onclick="selectGoal('endurance',this)">Endurance</button>
+    <button class="tab-btn" onclick="selectGoal('mobility',this)">Mobility</button>
+  </div>
 
-  <!-- DIFFICULTY -->
-  <section class="tab-buttons">
-    <button class="tab-btn active" onclick="selectDifficulty('beginner')">Beginner</button>
-    <button class="tab-btn" onclick="selectDifficulty('intermediate')">Intermediate</button>
-    <button class="tab-btn" onclick="selectDifficulty('advanced')">Advanced</button>
-  </section>
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="selectDifficulty('beginner',this)">Beginner</button>
+    <button class="tab-btn" onclick="selectDifficulty('intermediate',this)">Intermediate</button>
+    <button class="tab-btn" onclick="selectDifficulty('advanced',this)">Advanced</button>
+  </div>
 
-  <!-- DURATION -->
-  <section class="tab-buttons">
-    <button class="tab-btn active" onclick="selectDuration(10)">10 min</button>
-    <button class="tab-btn" onclick="selectDuration(20)">20 min</button>
-    <button class="tab-btn" onclick="selectDuration(30)">30 min</button>
-    <button class="tab-btn" onclick="selectDuration(45)">45 min</button>
-  </section>
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="selectDuration(10,this)">10 min</button>
+    <button class="tab-btn" onclick="selectDuration(20,this)">20 min</button>
+    <button class="tab-btn" onclick="selectDuration(30,this)">30 min</button>
+    <button class="tab-btn" onclick="selectDuration(45,this)">45 min</button>
+  </div>
 
-  <!-- MUSCLE GROUP GRID -->
   <section class="muscle-grid">
     <a class="muscle-btn" onclick="toggleMuscle(this,'Chest')">Chest</a>
     <a class="muscle-btn" onclick="toggleMuscle(this,'Back')">Back</a>
@@ -50,91 +43,84 @@
     <a class="muscle-btn" onclick="toggleMuscle(this,'Glutes')">Glutes</a>
   </section>
 
-  <!-- GENERATE BUTTON -->
-  <div style="padding:20px; text-align:center;">
-    <button class="auth-btn" onclick="generateWorkout()">Generate Workout</button>
+  <div style="padding:16px 20px;">
+    <button class="auth-btn" onclick="generateWorkout()" style="width:100%;">⚡ Generate Workout</button>
   </div>
 
-  <!-- OUTPUT -->
   <section id="output" class="workout-list"></section>
 
   <script>
-    let selectedGoal = "strength";
-    let selectedDifficulty = "beginner";
+    let selectedGoal = 'strength';
+    let selectedDifficulty = 'beginner';
     let selectedDuration = 10;
     let selectedMuscles = [];
 
-    function selectGoal(goal) {
-      selectedGoal = goal;
-      updateActiveButtons(event.target);
+    function selectGoal(g, btn) {
+      selectedGoal = g;
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     }
-
-    function selectDifficulty(level) {
-      selectedDifficulty = level;
-      updateActiveButtons(event.target);
+    function selectDifficulty(l, btn) {
+      selectedDifficulty = l;
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     }
-
-    function selectDuration(mins) {
-      selectedDuration = mins;
-      updateActiveButtons(event.target);
+    function selectDuration(m, btn) {
+      selectedDuration = m;
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     }
-
     function toggleMuscle(btn, muscle) {
-      btn.classList.toggle("active");
-      if (selectedMuscles.includes(muscle)) {
-        selectedMuscles = selectedMuscles.filter(m => m !== muscle);
-      } else {
-        selectedMuscles.push(muscle);
-      }
+      btn.classList.toggle('active');
+      selectedMuscles = selectedMuscles.includes(muscle)
+        ? selectedMuscles.filter(m => m !== muscle)
+        : [...selectedMuscles, muscle];
     }
 
-    function updateActiveButtons(btn) {
-      const group = btn.parentElement.querySelectorAll(".tab-btn");
-      group.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    }
-
-    /* EXERCISE DATABASE */
     const exercises = {
-      Chest: ["Push-Ups", "Incline Push-Ups", "Wide Push-Ups"],
-      Back: ["Superman Holds", "Wall Angels", "Good Mornings"],
-      Arms: ["Diamond Push-Ups", "Tricep Dips", "Fingertip Push-Ups"],
-      Core: ["Crunches", "Leg Raises", "Plank"],
-      Legs: ["Squats", "Lunges", "Jump Squats"],
-      Glutes: ["Glute Bridge", "Donkey Kicks", "Fire Hydrants"]
+      Chest: ['PushUps','InclinePushUps','WidePushUps','DiamondPushUps','ArcherPushUps','ClapPushUps'],
+      Back:  ['SupermanHolds','WallAngels','Bridge','GoodMornings'],
+      Arms:  ['DiamondPushUps','TricepDips','FingerPushUps'],
+      Core:  ['Crunches','LegRaises','RussianTwists','Plank','MountainClimbers'],
+      Legs:  ['JumpSquats','Lunges','WallSit','HighKnees'],
+      Glutes:['GluteBridge','DonkeyKicks','FireHydrants','Squats','Lunges']
+    };
+
+    const exerciseNames = {
+      PushUps:'Push-Ups', InclinePushUps:'Incline Push-Ups', WidePushUps:'Wide Push-Ups',
+      DiamondPushUps:'Diamond Push-Ups', ArcherPushUps:'Archer Push-Ups', ClapPushUps:'Clapping Push-Ups',
+      SupermanHolds:'Superman Holds', WallAngels:'Wall Angels', Bridge:'Bridge Hold',
+      GoodMornings:'Good Mornings', TricepDips:'Tricep Dips', FingerPushUps:'Fingertip Push-Ups',
+      Crunches:'Crunches', LegRaises:'Leg Raises', RussianTwists:'Russian Twists',
+      Plank:'Plank', MountainClimbers:'Mountain Climbers', JumpSquats:'Jump Squats',
+      Lunges:'Lunges', WallSit:'Wall Sit', HighKnees:'High Knees',
+      GluteBridge:'Glute Bridge', DonkeyKicks:'Donkey Kicks', FireHydrants:'Fire Hydrants',
+      Squats:'Squats'
     };
 
     function generateWorkout() {
-      if (selectedMuscles.length === 0) {
-        alert("Select at least one muscle group");
-        return;
-      }
-
-      const output = document.getElementById("output");
-      output.innerHTML = "";
-
-      const gender = localStorage.getItem("gender");
+      if (selectedMuscles.length === 0) { alert('Select at least one muscle group'); return; }
+      const output = document.getElementById('output');
+      output.innerHTML = '';
+      const gender = localStorage.getItem('gender') || 'M';
+      const timeSec = selectedDifficulty === 'beginner' ? 30 : selectedDifficulty === 'intermediate' ? 45 : 60;
+      const rounds  = selectedDuration / 10;
 
       selectedMuscles.forEach(muscle => {
-        const card = document.createElement("div");
-        card.className = "workout-card";
+        const list = exercises[muscle];
+        const key  = list[Math.floor(Math.random() * list.length)];
+        const name = exerciseNames[key] || key;
 
-        const exercise = exercises[muscle][Math.floor(Math.random() * exercises[muscle].length)];
-
+        const card = document.createElement('div');
+        card.className = 'workout-card';
         card.innerHTML = `
-          <h2>${exercise}</h2>
-          <img class="workout-img" src="./Images/${gender}${exercise.replace(/ /g,'')}.png">
-          <p>${generateDescription(exercise)}</p>
+          <h2>${name}</h2>
+          <img class="workout-img" src="./Images/${gender}${key}.png" onerror="this.style.display='none'">
+          <p>${timeSec}s × ${rounds} round${rounds>1?'s':''} &nbsp;|&nbsp; <span style="color:var(--accent-cyan)">${selectedGoal.toUpperCase()}</span></p>
         `;
-
         output.appendChild(card);
       });
     }
-
-    function generateDescription(ex) {
-      return `Complete this exercise for ${selectedDifficulty === "beginner" ? "30 sec" : selectedDifficulty === "intermediate" ? "45 sec" : "60 sec"} and repeat for ${selectedDuration / 10} rounds.`;
-    }
   </script>
-
 </body>
 </html>

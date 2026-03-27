@@ -3,122 +3,215 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fitness App</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
   <link rel="stylesheet" href="./style.css"/>
+  <style>
+    body {
+      font-family: 'Exo 2', 'Rajdhani', sans-serif;
+      background: radial-gradient(ellipse 90% 70% at 20% 10%, rgba(0,87,255,0.2) 0%, transparent 55%),
+                  radial-gradient(ellipse 70% 60% at 80% 90%, rgba(255,45,120,0.15) 0%, transparent 55%),
+                  #020510;
+      color: #e8f4ff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .login-title {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #00c8ff, #0057ff 50%, #ff2d78);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .login-sub {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: rgba(200,220,255,0.4);
+      margin-bottom: 40px;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .login-box {
+      width: 90%;
+      max-width: 380px;
+    }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: 1px solid rgba(0,200,255,0.3);
+      border-radius: 14px;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      background: rgba(66,133,244,0.15);
+      transition: all 0.25s;
+    }
+
+    .google-btn:hover {
+      background: rgba(66,133,244,0.35);
+      border-color: rgba(0,200,255,0.6);
+      box-shadow: 0 0 20px rgba(0,200,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .signout-btn {
+      display: none;
+      width: 100%;
+      padding: 13px;
+      margin: 10px 0;
+      border: 1px solid rgba(255,45,120,0.3);
+      border-radius: 14px;
+      background: rgba(255,45,120,0.12);
+      color: white;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .gender-row {
+      display: none;
+      justify-content: center;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .gender-card {
+      background: rgba(10,20,45,0.85);
+      border: 1px solid rgba(0,200,255,0.15);
+      width: 46%;
+      padding: 20px 10px;
+      border-radius: 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: rgba(200,220,255,0.6);
+    }
+
+    .gender-card:hover {
+      border-color: rgba(0,200,255,0.5);
+      box-shadow: 0 0 20px rgba(0,200,255,0.2);
+      color: #00c8ff;
+    }
+
+    .gender-card.selected {
+      border-color: #00c8ff;
+      box-shadow: 0 0 24px rgba(0,200,255,0.4);
+      color: #00c8ff;
+      background: rgba(0,87,255,0.15);
+    }
+
+    .gender-card img {
+      width: 90px; height: 90px;
+      margin-bottom: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .enter-btn {
+      display: none;
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #0057ff, #00c8ff);
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 6px 28px rgba(0,87,255,0.4);
+      transition: all 0.25s;
+      margin-top: 4px;
+    }
+
+    .enter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(0,200,255,0.5);
+    }
+
+    #status {
+      text-align: center;
+      margin-top: 18px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: #00c8ff;
+      min-height: 20px;
+    }
+
+    /* scanline decoration */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,200,255,0.015) 2px, rgba(0,200,255,0.015) 4px);
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
+<body>
+  <div class="login-box" style="position:relative;z-index:1;">
+    <div class="login-title">⚡ Fitness App</div>
+    <div class="login-sub">TRAIN · TRACK · TRANSFORM</div>
 
-<body style="
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-">
-
-  <header style="
-    position: absolute;
-    top: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  ">
-    <h1>Fitness App</h1>
-  </header>
-
-  <div id="container" style="text-align:center; width: 90%; max-width: 400px;">
-
-    <h3 style="margin-bottom: 25px; font-weight: 600; color: #00ffff; letter-spacing: 1px;">
-      WELCOME BACK
-    </h3>
-
-    <!-- Google Sign-In -->
-    <a id="googleBtn"
-      style="
-        display: block;
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        transition: all 0.25s ease;
-        cursor: pointer;
-        text-decoration: none;
-        color: white;
-        background-color: #4285F4;
-      ">
+    <button id="googleBtn" class="google-btn">
       <i class="fab fa-google"></i> Sign in with Google
-    </a>
+    </button>
 
-    <!-- Sign Out -->
-    <a id="signOutBtn"
-      style="
-        display:none;
-        background-color:#092f36;
-        color:white;
-        padding:12px;
-        border:none;
-        border-radius:5px;
-        font-size:16px;
-        margin-top:10px;
-        text-align: center;
-      ">
-      Sign Out
-    </a>
+    <button id="signOutBtn" class="signout-btn">Sign Out</button>
 
-    <!-- GENDER SELECTION -->
-    <div id="genderSection" style="display:none; margin-top: 25px;">
-      <h3 style="color:#00ffff; margin-bottom: 15px;">Select Your Gender</h3>
-
-      <div style="display:flex; justify-content:center; gap:20px;">
-
-        <div class="genderCard" onclick="selectGender('M')"
-          style="background:#1e293b; padding:15px; border-radius:15px; cursor:pointer; width:45%;">
-          <img src="./Images/Man.png" style="width:100px; height:100px;">
-          <p>MAN</p>
-        </div>
-
-        <div class="genderCard" onclick="selectGender('W')"
-          style="background:#1e293b; padding:15px; border-radius:15px; cursor:pointer; width:45%;">
-          <img src="./Images/Woman.png" style="width:100px; height:100px;">
-          <p>WOMAN</p>
-        </div>
-
+    <div id="genderSection" class="gender-row">
+      <div class="gender-card" onclick="selectGender('M', this)">
+        <img src="./Images/Man.png" onerror="this.style.display='none'">
+        <span>MAN</span>
+      </div>
+      <div class="gender-card" onclick="selectGender('W', this)">
+        <img src="./Images/Woman.png" onerror="this.style.display='none'">
+        <span>WOMAN</span>
       </div>
     </div>
 
-    <!-- Enter App -->
-    <a id="start" href="./Home.html"
-      style="
-        text-decoration: none;
-        display:none;
-        background-color:cadetblue;
-        color:white;
-        padding:12px;
-        border:none;
-        border-radius:5px;
-        font-size:16px;
-        margin-top:20px;
-        text-align: center;
-      ">
-      🏋️ ENTER FITNESS APP
-    </a>
+    <a id="start" href="./Home.html" class="enter-btn">🏋️ Enter App</a>
 
-    <p id="status" style="text-align:center; margin-top:20px; color:#00ffff;"></p>
+    <p id="status"></p>
   </div>
 
-  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDYk7TWe0fSg9116LKZN-3g8KthK8WVZlY",
@@ -126,85 +219,66 @@
       projectId: "fitness-app-3a698",
       storageBucket: "fitness-app-3a698.firebasestorage.app",
       messagingSenderId: "367615850090",
-      appId: "1:367615850090:web:8d55dc659bb32e11c1bc13",
-      measurementId: "G-BDYRBQBVTB"
+      appId: "1:367615850090:web:8d55dc659bb32e11c1bc13"
     };
-
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    const googleBtn = document.getElementById("googleBtn");
-    const signOutBtn = document.getElementById("signOutBtn");
-    const startBtn = document.getElementById("start");
-    const genderSection = document.getElementById("genderSection");
-    const statusText = document.getElementById("status");
+    const googleBtn   = document.getElementById('googleBtn');
+    const signOutBtn  = document.getElementById('signOutBtn');
+    const startBtn    = document.getElementById('start');
+    const genderSec   = document.getElementById('genderSection');
+    const statusText  = document.getElementById('status');
+    let selectedGender = localStorage.getItem('gender');
 
-    let selectedGender = null;
-
-    function selectGender(g) {
+    function selectGender(g, el) {
       selectedGender = g;
-      localStorage.setItem("gender", g);
-
-      document.querySelectorAll(".genderCard").forEach(c => c.style.border = "none");
-      event.currentTarget.style.border = "3px solid #00ffff";
-
+      localStorage.setItem('gender', g);
+      document.querySelectorAll('.gender-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
       checkReady();
     }
 
     function checkReady() {
-      if (auth.currentUser && selectedGender) {
-        startBtn.style.display = "block";
-      }
+      if (auth.currentUser && selectedGender) startBtn.style.display = 'block';
     }
 
-    // Google Sign-In
-    googleBtn.addEventListener("click", () => {
-      auth.signInWithPopup(provider)
-        .then((result) => {
-          const user = result.user;
-          statusText.textContent = "🔥 Welcome, " + user.displayName + "!";
-
-          googleBtn.style.display = "none";
-          signOutBtn.style.display = "block";
-          genderSection.style.display = "block";
-
-          checkReady();
-        })
-        .catch((error) => {
-          statusText.textContent = "⚠️ " + error.message;
-        });
+    googleBtn.addEventListener('click', () => {
+      auth.signInWithPopup(provider).then(r => {
+        statusText.textContent = '🔥 Welcome, ' + r.user.displayName + '!';
+        googleBtn.style.display = 'none';
+        signOutBtn.style.display = 'block';
+        genderSec.style.display  = 'flex';
+        checkReady();
+      }).catch(e => statusText.textContent = '⚠️ ' + e.message);
     });
 
-    // Sign Out
-    signOutBtn.addEventListener("click", () => {
+    signOutBtn.addEventListener('click', () => {
       auth.signOut().then(() => {
-        statusText.textContent = "👋 Signed out successfully!";
-        googleBtn.style.display = "block";
-        signOutBtn.style.display = "none";
-        genderSection.style.display = "none";
-        startBtn.style.display = "none";
+        statusText.textContent = '👋 Signed out!';
+        googleBtn.style.display  = 'block';
+        signOutBtn.style.display = 'none';
+        genderSec.style.display  = 'none';
+        startBtn.style.display   = 'none';
       });
     });
 
-    // Persist login
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
       if (user) {
-        statusText.textContent = "✅ Signed in as " + user.displayName;
-        googleBtn.style.display = "none";
-        signOutBtn.style.display = "block";
-        genderSection.style.display = "block";
-
+        statusText.textContent   = '✅ ' + user.displayName;
+        googleBtn.style.display  = 'none';
+        signOutBtn.style.display = 'block';
+        genderSec.style.display  = 'flex';
+        // restore selected gender chip
+        if (selectedGender) {
+          document.querySelectorAll('.gender-card').forEach((c,i) => {
+            if ((i===0&&selectedGender==='M')||(i===1&&selectedGender==='W')) c.classList.add('selected');
+          });
+        }
         checkReady();
-      } else {
-        statusText.textContent = "";
-        googleBtn.style.display = "block";
-        signOutBtn.style.display = "none";
-        genderSection.style.display = "none";
-        startBtn.style.display = "none";
       }
     });
   </script>
-
 </body>
 </html>

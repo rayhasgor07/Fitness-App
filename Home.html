@@ -1,72 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>Fitness App</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-  </head>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Fitness App</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<body class="app-body">
 
-  <body class="app-body">
+  <header class="app-header">
+    <h1>⚡ Fitness App</h1>
+  </header>
 
-    <!-- HEADER -->
-    <header class="app-header">
-      <h1>FITNESS APP</h1>
-    </header>
+  <nav class="nav-bar">
+    <a class="nav-btn" href="./index.html">
+      <i class="fa-solid fa-venus-mars"></i>
+      <span>Gender</span>
+    </a>
+    <a class="nav-btn" href="./Core.html">
+      <i class="fa-solid fa-dumbbell"></i>
+      <span>Workout</span>
+    </a>
+    <a class="nav-btn" href="./Height.html">
+      <i class="fa-solid fa-text-height"></i>
+      <span>Height</span>
+    </a>
+    <a class="nav-btn" href="./Yoga.html">
+      <i class="fa-solid fa-person-walking"></i>
+      <span>Yoga</span>
+    </a>
+    <a class="nav-btn" href="./Calc.html">
+      <i class="fa-solid fa-calculator"></i>
+      <span>Calculators</span>
+    </a>
+    <a class="nav-btn" href="./Weight.html">
+      <i class="fa-solid fa-weight-scale"></i>
+      <span>Weight</span>
+    </a>
+    <a class="nav-btn" href="./WorkGen.html">
+      <i class="fa-solid fa-bolt"></i>
+      <span>Workout Gen</span>
+    </a>
+    <a class="nav-btn" href="./Profile.html">
+      <i class="fa-solid fa-user-astronaut"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
 
-    <!-- NAVIGATION -->
-    <nav class="nav-bar">
-      <a class="nav-btn" href="./index.html">
-        <i class="fa-solid fa-venus-mars"></i>
-        <span>Gender</span>
-      </a>
-
-      <a class="nav-btn" href="./Core.html">
-        <i class="fa-solid fa-dumbbell"></i>
-        <span>Workout</span>
-      </a>
-
-      <a class="nav-btn" href="./Height.html">
-        <i class="fa-solid fa-text-height"></i>
-        <span>Height</span>
-      </a>
-
-      <a class="nav-btn" href="./Yoga.html">
-        <i class="fa-solid fa-person-walking"></i>
-        <span>Yoga</span>
-      </a>
-
-       <a class="nav-btn" href="./Calc.html">
-        <i class="fa-solid fa-calculator"></i>
-        <span>Calculator</span>
-      </a>
-
-      <a class="nav-btn" href="./Weight.html">
-        <i class="fa-solid fa-weight-scale"></i>
-        <span>Weight</span>
-      </a>
-       <a class="nav-btn" href="./WorkGen.html">
-        <i class="fa-solid fa-dumbbell"></i>
-        <span>WorkoutGenerator</span>
-      </a>
-    </nav>
-
-    <script>
-      function loadWorkoutImages() {
-        let gender = localStorage.getItem("gender");
-        document.getElementById("Cobra").src = `./Images/${gender}Cobra.png`;
-        document.getElementById("Child").src = `./Images/${gender}Child.png`;
-        document.getElementById("Crescent").src = `./Images/${gender}Crescent.png`;
-        document.getElementById("Pigeon").src = `./Images/${gender}Pigeon.png`;
-        document.getElementById("Bridge").src = `./Images/${gender}Bridge.png`;
-        document.getElementById("SpinalTwist").src = `./Images/${gender}SpinalTwist.png`;
-      }
-
-      window.onload = loadWorkoutImages;
-    </script>
-
-  </body>
+</body>
 </html>

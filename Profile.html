@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+</head>
+<body class="app-body">
+
+  <header class="app-header" style="display:flex;justify-content:space-between;align-items:center;padding:0 20px;">
+    <a href="./Home.html" class="nav-btn" style="width:auto;padding:8px 16px;flex-direction:row;gap:6px;font-size:13px;">⬅ Home</a>
+    <h1>Profile</h1>
+    <div style="width:80px;"></div>
+  </header>
+
+  <!-- HERO -->
+  <div class="profile-hero">
+    <div class="profile-avatar" id="avatarIcon">🏋️</div>
+    <div class="profile-name" id="profileName">—</div>
+    <div class="profile-email" id="profileEmail">—</div>
+  </div>
+
+  <!-- STATS GRID -->
+  <div class="profile-stats-grid">
+    <div class="stat-card">
+      <div class="stat-number" id="statDays">0</div>
+      <div class="stat-label">Days Active</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="statStreak">0</div>
+      <div class="stat-label">Streak</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="statWeight">—</div>
+      <div class="stat-label">Current kg</div>
+    </div>
+  </div>
+
+  <!-- STREAK WEEK -->
+  <div class="profile-section">
+    <div class="profile-section-title">This Week</div>
+    <div class="profile-card">
+      <div class="streak-bar" id="streakBar"></div>
+    </div>
+
+    <!-- BODY STATS -->
+    <div class="profile-section-title">Body Stats</div>
+    <div class="profile-card">
+      <div class="profile-input-row">
+        <input id="pHeight" class="calc-input" type="number" placeholder="Height (cm)" style="margin-bottom:0;">
+        <input id="pWeight" class="calc-input" type="number" placeholder="Weight (kg)" style="margin-bottom:0;">
+      </div>
+      <div class="profile-input-row" style="margin-top:10px;">
+        <input id="pAge" class="calc-input" type="number" placeholder="Age" style="margin-bottom:0;">
+        <select id="pGender" class="calc-input" style="margin-bottom:0;">
+          <option value="">Gender</option>
+          <option value="M">Male</option>
+          <option value="W">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- GOALS -->
+    <div class="profile-section-title">My Goals</div>
+    <div class="profile-card">
+      <div class="goal-chips" id="goalChips">
+        <span class="goal-chip" onclick="toggleChip(this)">Lose Fat</span>
+        <span class="goal-chip" onclick="toggleChip(this)">Build Muscle</span>
+        <span class="goal-chip" onclick="toggleChip(this)">Improve Flexibility</span>
+        <span class="goal-chip" onclick="toggleChip(this)">More Energy</span>
+        <span class="goal-chip" onclick="toggleChip(this)">Better Sleep</span>
+        <span class="goal-chip" onclick="toggleChip(this)">Run Faster</span>
+        <span class="goal-chip" onclick="toggleChip(this)">Grow Taller</span>
+        <span class="goal-chip" onclick="toggleChip(this)">Stay Consistent</span>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="profile-section-title">Personal Note</div>
+    <div class="profile-card">
+      <textarea id="pNote" class="calc-input" rows="3" placeholder="Write a note to yourself..." style="resize:none; height:80px;"></textarea>
+    </div>
+
+    <!-- LOG TODAY -->
+    <div class="profile-section-title">Daily Log</div>
+    <div class="profile-card">
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Did you work out today?</p>
+      <div style="display:flex; gap:10px;">
+        <button class="calc-btn" style="background:linear-gradient(135deg,#00c853,#00acc1);" onclick="logToday(true)">✅ Yes!</button>
+        <button class="calc-btn" style="background:linear-gradient(135deg,#37474f,#455a64);" onclick="logToday(false)">❌ Rest Day</button>
+      </div>
+    </div>
+
+    <button class="save-profile-btn" onclick="saveProfile()">💾 Save Profile</button>
+
+    <div id="saveMsg" style="text-align:center;margin-top:14px;font-family:var(--font-mono);font-size:13px;color:var(--accent-cyan);opacity:0;transition:opacity 0.4s;"></div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDYk7TWe0fSg9116LKZN-3g8KthK8WVZlY",
+      authDomain: "fitness-app-3a698.firebaseapp.com",
+      projectId: "fitness-app-3a698",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // ── STREAK WEEK ──
+    const days = ['M','T','W','T','F','S','S'];
+    const bar  = document.getElementById('streakBar');
+    const today = new Date().getDay(); // 0=Sun
+    const weekLog = JSON.parse(localStorage.getItem('weekLog') || '[]');
+
+    days.forEach((d,i) => {
+      const dot = document.createElement('div');
+      dot.className = 'streak-dot' + (weekLog.includes(i) ? ' done' : '');
+      dot.innerHTML = `<span>${d}</span>`;
+      bar.appendChild(dot);
+    });
+
+    // ── LOAD PROFILE ──
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById('profileName').textContent  = user.displayName || 'Athlete';
+        document.getElementById('profileEmail').textContent = user.email || '';
+        // initials avatar
+        const initials = (user.displayName || 'A').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+        document.getElementById('avatarIcon').textContent = initials;
+      }
+    });
+
+    // restore saved data
+    const saved = JSON.parse(localStorage.getItem('profileData') || '{}');
+    if (saved.height)  document.getElementById('pHeight').value = saved.height;
+    if (saved.weight)  { document.getElementById('pWeight').value = saved.weight; document.getElementById('statWeight').textContent = saved.weight; }
+    if (saved.age)     document.getElementById('pAge').value    = saved.age;
+    if (saved.gender)  document.getElementById('pGender').value = saved.gender;
+    if (saved.note)    document.getElementById('pNote').value   = saved.note;
+    if (saved.goals)   saved.goals.forEach(g => {
+      document.querySelectorAll('.goal-chip').forEach(c => { if(c.textContent===g) c.classList.add('selected'); });
+    });
+
+    // stats
+    document.getElementById('statDays').textContent   = localStorage.getItem('totalDays')   || 0;
+    document.getElementById('statStreak').textContent = localStorage.getItem('streakCount') || 0;
+
+    function toggleChip(el) { el.classList.toggle('selected'); }
+
+    function saveProfile() {
+      const goals = [...document.querySelectorAll('.goal-chip.selected')].map(c => c.textContent);
+      const data  = {
+        height: document.getElementById('pHeight').value,
+        weight: document.getElementById('pWeight').value,
+        age:    document.getElementById('pAge').value,
+        gender: document.getElementById('pGender').value,
+        note:   document.getElementById('pNote').value,
+        goals
+      };
+      localStorage.setItem('profileData', JSON.stringify(data));
+      if (data.gender) localStorage.setItem('gender', data.gender);
+      if (data.weight) document.getElementById('statWeight').textContent = data.weight;
+      const msg = document.getElementById('saveMsg');
+      msg.textContent = '✓ Profile saved!';
+      msg.style.opacity = '1';
+      setTimeout(() => msg.style.opacity = '0', 2500);
+    }
+
+    function logToday(worked) {
+      const todayIdx = (new Date().getDay() + 6) % 7; // Mon=0
+      let log = JSON.parse(localStorage.getItem('weekLog') || '[]');
+      let total = +(localStorage.getItem('totalDays') || 0);
+      let streak = +(localStorage.getItem('streakCount') || 0);
+
+      if (worked && !log.includes(todayIdx)) {
+        log.push(todayIdx);
+        total++;
+        streak++;
+        localStorage.setItem('weekLog', JSON.stringify(log));
+        localStorage.setItem('totalDays', total);
+        localStorage.setItem('streakCount', streak);
+        document.getElementById('statDays').textContent   = total;
+        document.getElementById('statStreak').textContent = streak;
+        // update dot
+        const dots = document.querySelectorAll('.streak-dot');
+        if (dots[todayIdx]) dots[todayIdx].classList.add('done');
+      }
+
+      const msg = document.getElementById('saveMsg');
+      msg.textContent = worked ? '🔥 Workout logged! Keep it up!' : '😴 Rest day logged.';
+      msg.style.opacity = '1';
+      setTimeout(() => msg.style.opacity = '0', 2500);
+    }
+  </script>
+</body>
+</html>
